@@ -1,4 +1,6 @@
+import 'package:credit_card/card_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'credit_card_screen.dart';
 
@@ -16,7 +18,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: CreditCardScreen(),
+      home: MultiProvider(providers: [
+        ChangeNotifierProvider.value(
+          value: CardModel(),
+        )
+      ], child: CreditCardScreen()),
     );
   }
 }

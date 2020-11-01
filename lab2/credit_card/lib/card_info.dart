@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,18 +10,21 @@ class CardInfo extends StatelessWidget {
   final double height;
   final String title;
   final String value;
+  final bool focused;
 
   CardInfo({
     @required this.width,
     @required this.height,
     @required this.title,
     @required this.value,
+    @required this.focused,
   });
 
   @override
   Widget build(BuildContext context) {
     return FocusBox(
       width: width,
+      enabled: focused,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -36,6 +41,10 @@ class CardInfo extends StatelessWidget {
               fontWeight: FontWeight.w600,
               color: Colors.white,
               fontSize: height * 0.06,
+              fontFeatures: [
+                FontFeature.tabularFigures(),
+                FontFeature.slashedZero(),
+              ],
             ),
           ),
         ],

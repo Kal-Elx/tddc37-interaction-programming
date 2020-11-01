@@ -3,8 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CVV extends StatelessWidget {
   final double width;
+  final int length;
 
-  const CVV(this.width);
+  const CVV(this.width, this.length);
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +33,10 @@ class CVV extends StatelessWidget {
             height: width * 0.11,
             child: Padding(
               padding: EdgeInsets.only(right: width * 0.03),
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Text(
-                  '****',
-                  style: GoogleFonts.sourceSansPro(
-                    fontSize: width * 0.06,
-                  ),
+              child: Text(
+                '*' * length,
+                style: GoogleFonts.sourceSansPro(
+                  fontSize: width * 0.06,
                 ),
               ),
             ),

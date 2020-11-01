@@ -1,49 +1,38 @@
 import 'package:flutter/material.dart';
 
 import 'credit_card.dart';
+import 'credit_card_form.dart';
 
 class CreditCardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final dimensions = MediaQuery.of(context).size;
-    final GlobalKey<CreditCardState> _creditCardStateState =
-        GlobalKey<CreditCardState>();
-
-    final creditCard = CreditCard(
-      width: dimensions.width * 0.95,
-      background: 6,
-      bank: 'mastercard',
-      key: _creditCardStateState,
-    );
+    final width = MediaQuery.of(context).size.width;
+    final cardWidth = width * 0.95;
+    final cardHeight = cardWidth * (435.0 / 675.0);
 
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       body: SafeArea(
         child: Stack(
           children: [
-            Positioned(
-              child: Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: Card(
-                  child: Container(
-                    height: dimensions.height * 0.75,
-                    width: double.infinity,
-                    child: Center(
-                      child: RaisedButton(
-                        child: Text("flip me"),
-                        onPressed: () {
-                          _creditCardStateState.currentState.flip();
-                        },
-                      ),
-                    ),
+            Column(
+              children: [
+                SizedBox(
+                  height: cardHeight / 2,
+                ),
+                Expanded(
+                  child: Card(
+                    child: CreditCardForm(cardHeight / 2),
                   ),
                 ),
-              ),
+              ],
             ),
             Positioned(
               child: Align(
                 alignment: FractionalOffset.topCenter,
-                child: creditCard,
+                child: CreditCard(
+                  width: width * 0.95,
+                ),
               ),
             ),
           ],
