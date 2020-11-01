@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DropdownFormElement extends StatefulWidget {
   final String hint;
@@ -76,13 +77,19 @@ class _DropdownFormElementState extends State<DropdownFormElement> {
               _val = newValue;
             });
           },
-          hint: Text(widget.hint),
+          hint: Text(
+            widget.hint,
+            style: GoogleFonts.sourceSansPro(),
+          ),
           underline: Container(),
           items: widget.values.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: Center(
-                child: Text(value),
+                child: Text(
+                  value,
+                  style: GoogleFonts.sourceSansPro(),
+                ),
               ),
             );
           }).toList(),

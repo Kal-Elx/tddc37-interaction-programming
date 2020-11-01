@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'card_model.dart';
@@ -49,7 +50,25 @@ class CreditCardForm extends StatelessWidget {
                   FilteringTextInputFormatter.singleLineFormatter,
                 ],
               ),
-              ExpiresAndCvv(provider: provider)
+              ExpiresAndCvv(provider: provider),
+              Container(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: RaisedButton(
+                    color: Colors.blue,
+                    child: Text(
+                      "Submit",
+                      style: GoogleFonts.sourceSansPro(
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPressed: () {
+                      FocusManager.instance.primaryFocus.unfocus();
+                    },
+                  ),
+                ),
+              ),
             ],
           ),
         ),
