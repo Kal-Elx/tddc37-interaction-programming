@@ -15,7 +15,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     // Save reference to widget to be able to fetch result.
-    final imageSequencePicker = ImageSequencePicker();
+    final imageSequencePicker = ImageSequencePicker(
+      axis: Axis.horizontal,
+      aspectRatio: 3 / 5,
+      padding: 4.0,
+      borderRadius: 4.0,
+    );
 
     return MaterialApp(
       home: Scaffold(
@@ -24,9 +29,17 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Text(
+              "Pick your images",
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             Container(
-              height: 300,
+              height: 400,
               child: imageSequencePicker,
             ),
             RaisedButton(

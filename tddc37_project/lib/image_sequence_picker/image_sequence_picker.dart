@@ -10,19 +10,47 @@ import 'new_image.dart';
 /// Widget for selecting a sequence of images.
 class ImageSequencePicker extends StatelessWidget {
   final _key = new GlobalKey<_ImageSequencePickerStateImpl>();
+  final double borderRadius;
+  final double padding;
+  final double aspectRatio;
+  final Axis axis;
+
+  ImageSequencePicker({
+    this.borderRadius = 0.0,
+    this.padding = 0.0,
+    this.aspectRatio = 1.0,
+    this.axis = Axis.horizontal,
+  });
 
   get images => _key.currentState.images;
 
   @override
   Widget build(BuildContext context) {
-    return _ImageSequencePickerImpl(key: _key);
+    return _ImageSequencePickerImpl(
+      key: _key,
+      borderRadius: borderRadius,
+      padding: padding,
+      aspectRatio: aspectRatio,
+      axis: axis,
+    );
   }
 }
 
 /// Implementation of ImageSequencePicker.
 /// Seperated to be able to access its state with the given key.
 class _ImageSequencePickerImpl extends StatefulWidget {
-  _ImageSequencePickerImpl({@required Key key}) : super(key: key);
+  final double borderRadius;
+  final double padding;
+  final double aspectRatio;
+  final Axis axis;
+
+  _ImageSequencePickerImpl({
+    @required Key key,
+    @required this.borderRadius,
+    @required this.padding,
+    @required this.aspectRatio,
+    @required this.axis,
+  }) : super(key: key);
 
   @override
   _ImageSequencePickerStateImpl createState() =>
@@ -87,6 +115,9 @@ class _ImageSequencePickerStateImpl extends State<_ImageSequencePickerImpl> {
             removePicture: () {
               _removePicture(image);
             },
+            borderRadius: widget.borderRadius,
+            padding: widget.padding,
+            aspectRatio: widget.aspectRatio,
           ),
         )
         .toList());
@@ -95,12 +126,15 @@ class _ImageSequencePickerStateImpl extends State<_ImageSequencePickerImpl> {
     items.add(NewImage(
       newCameraImage: () => _takePicture(ImageSource.camera),
       newGalleryImage: () => _takePicture(ImageSource.gallery),
+      borderRadius: widget.borderRadius,
+      padding: widget.padding,
+      aspectRatio: widget.aspectRatio,
     ));
 
     return ReorderableListView(
       children: items,
       onReorder: _reorderImages,
-      scrollDirection: Axis.horizontal,
+      scrollDirection: widget.axis,
     );
   }
 }

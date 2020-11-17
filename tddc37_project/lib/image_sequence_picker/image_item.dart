@@ -9,25 +9,37 @@ class ImageItem extends StatelessWidget {
   final key = UniqueKey(); // All items in the list needs a key.
   final File image;
   final void Function() removePicture;
+  final double borderRadius;
+  final double padding;
+  final double aspectRatio;
 
   ImageItem({
     @required this.image,
     @required this.removePicture,
+    @required this.borderRadius,
+    @required this.padding,
+    @required this.aspectRatio,
   });
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 3 / 4,
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: FileImage(image),
-            fit: BoxFit.cover,
+    return Padding(
+      padding: EdgeInsets.all(padding),
+      child: AspectRatio(
+        aspectRatio: aspectRatio,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(borderRadius),
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: FileImage(image),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: RemoveImageDialog(
+              onRemove: removePicture,
+            ),
           ),
-        ),
-        child: RemoveImageDialog(
-          onRemove: removePicture,
         ),
       ),
     );
