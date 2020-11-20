@@ -22,7 +22,7 @@ class _OneTimeInformationState extends State<OneTimeInformation> {
     return (prefs.getBool('seenInfoBefore') ?? false);
   }
 
-  /// Saves that the user has seen the information screen before.
+  /// Saves if the user has seen the information screen before.
   Future<void> _setSeenInfoBefore({bool seenBefore = true}) async {
     final SharedPreferences prefs = await _prefs;
     await prefs.setBool('seenInfoBefore', seenBefore);
