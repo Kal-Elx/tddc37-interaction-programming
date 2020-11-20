@@ -6,8 +6,16 @@ import 'information_screen.dart';
 /// Handles the transition from InformationScreen to TabScreen.
 class OneTimeInformation extends StatefulWidget {
   final Widget nextScreen;
+  final List<Widget> information;
+  final String title;
+  final String dismissText;
 
-  OneTimeInformation({@required this.nextScreen});
+  OneTimeInformation({
+    @required this.nextScreen,
+    @required this.information,
+    @required this.title,
+    @required this.dismissText,
+  });
 
   @override
   _OneTimeInformationState createState() => _OneTimeInformationState();
@@ -45,6 +53,9 @@ class _OneTimeInformationState extends State<OneTimeInformation> {
               ? widget.nextScreen
               : InformationScreen(
                   onClose: _handleTransition,
+                  information: widget.information,
+                  title: widget.title,
+                  dismissText: widget.dismissText,
                 );
         } else {
           return Scaffold(
