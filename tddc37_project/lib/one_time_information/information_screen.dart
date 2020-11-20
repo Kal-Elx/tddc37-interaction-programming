@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'auto_scale_title.dart';
+
 class InformationScreen extends StatefulWidget {
   final void Function() onClose;
   final List<Widget> information;
@@ -32,20 +34,14 @@ class _InformationScreenState extends State<InformationScreen> {
               Container(
                 width: 300,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      widget.title,
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                      ),
-                    ),
+                  padding: const EdgeInsets.only(top: 36),
+                  child: AutoScaleTitle(
+                    title: widget.title,
+                    maxFontSize: 36,
                   ),
                 ),
               ),
+              SizedBox(height: 64),
               Expanded(
                 child: PageView(
                   controller: controller,
@@ -61,6 +57,7 @@ class _InformationScreenState extends State<InformationScreen> {
                     effect: SlideEffect(activeDotColor: Colors.blue),
                   ),
                 ),
+              SizedBox(height: 64),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
