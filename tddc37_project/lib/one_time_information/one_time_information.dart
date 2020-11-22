@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'information_screen.dart';
 
-/// Handles the transition from InformationScreen to TabScreen.
+/// Handles the transition from InformationScreen to next screen.
 class OneTimeInformation extends StatefulWidget {
   final Widget nextScreen;
   final List<Widget> information;
@@ -34,7 +34,7 @@ class _OneTimeInformationState extends State<OneTimeInformation> {
   Future<void> _setSeenInfoBefore({bool seenBefore = true}) async {
     final SharedPreferences prefs = await _prefs;
     await prefs.setBool('seenInfoBefore', seenBefore);
-    setState(() {}); //* Rebuild the widget to transition to TabScreen.
+    setState(() {}); //* Rebuild the widget to transition to next screen.
   }
 
   /// Transitions to next screen.
