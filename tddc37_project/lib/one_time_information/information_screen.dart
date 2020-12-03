@@ -33,6 +33,7 @@ class _InformationScreenState extends State<InformationScreen> {
             children: [
               Container(
                 width: 300,
+                key: Key('infoScreenTitle'),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 36),
                   child: AutoScaleTitle(
@@ -44,6 +45,7 @@ class _InformationScreenState extends State<InformationScreen> {
               SizedBox(height: 64),
               Expanded(
                 child: PageView(
+                  key: Key('infoPageView'),
                   controller: controller,
                   children: widget.information,
                 ),
@@ -63,6 +65,7 @@ class _InformationScreenState extends State<InformationScreen> {
                 child: Container(
                   width: double.infinity,
                   child: RaisedButton(
+                    key: Key('dismissButton'),
                     color: Colors.blue,
                     onPressed: widget.onClose,
                     child: Padding(

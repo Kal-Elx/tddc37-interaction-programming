@@ -11,6 +11,7 @@ class ResetSeen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      key: Key('resetButton'),
       icon: Icon(Icons.refresh),
       onPressed: _resetSeenInfoBefore,
     );

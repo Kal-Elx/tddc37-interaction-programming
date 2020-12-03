@@ -11,7 +11,8 @@ class InfoCard extends StatelessWidget {
     this.title,
     this.resource,
     this.body,
-  });
+    key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
