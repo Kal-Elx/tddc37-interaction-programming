@@ -38,46 +38,6 @@ void main() {
       }
     });
 
-    test('Information screen is dismissible', () async {
-      // Make sure information screen is open.
-      expect(await isPresent(infoScreenTitle, driver), true);
-
-      // Dismiss information.
-      await driver.tap(dismissButton);
-
-      // Check that information screen is closed.
-      expect(await isPresent(infoScreenTitle, driver), false);
-
-      // Reset that informations has been seen.
-      await driver.tap(resetButton);
-
-      // Restart app.
-      await driver.requestData('restart');
-    });
-
-    test('Information screen is not shown if already seen', () async {
-      // Make sure information screen is open.
-      expect(await isPresent(infoScreenTitle, driver), true);
-
-      // Dismiss information.
-      await driver.tap(dismissButton);
-
-      // Check that information screen is closed.
-      expect(await isPresent(infoScreenTitle, driver), false);
-
-      // Restart app.
-      await driver.requestData('restart');
-
-      // Check that information screen was not opened.
-      expect(await isPresent(infoScreenTitle, driver), false);
-
-      // Reset that informations has been seen.
-      await driver.tap(resetButton);
-
-      // Restart app.
-      await driver.requestData('restart');
-    });
-
     test('Scroll all cards', () async {
       // Make sure information screen is open.
       expect(await isPresent(infoScreenTitle, driver), true);
@@ -104,6 +64,50 @@ void main() {
       // Swipe right again and see first card.
       await driver.scroll(infoPageView, 400, 0, Duration(milliseconds: 200));
       expect(await isPresent(firstInfoCard, driver), true);
+    });
+
+    test('Information screen is dismissible', () async {
+      // Make sure information screen is open.
+      expect(await isPresent(infoScreenTitle, driver), true);
+
+      // Dismiss information.
+      await driver.tap(dismissButton);
+
+      // Check that information screen is closed.
+      expect(await isPresent(infoScreenTitle, driver), false);
+
+      // Reset that informations has been seen.
+      await driver.tap(resetButton);
+
+      // Restart app.
+      await Future.delayed(Duration(seconds: 1));
+      await driver.requestData('restart');
+      await Future.delayed(Duration(seconds: 1));
+    });
+
+    test('Information screen is not shown if already seen', () async {
+      // Make sure information screen is open.
+      expect(await isPresent(infoScreenTitle, driver), true);
+
+      // Dismiss information.
+      await driver.tap(dismissButton);
+
+      // Check that information screen is closed.
+      expect(await isPresent(infoScreenTitle, driver), false);
+
+      // Restart app.
+      await driver.requestData('restart');
+
+      // Check that information screen was not opened.
+      expect(await isPresent(infoScreenTitle, driver), false);
+
+      // Reset that informations has been seen.
+      await driver.tap(resetButton);
+
+      // Restart app.
+      await Future.delayed(Duration(seconds: 1));
+      await driver.requestData('restart');
+      await Future.delayed(Duration(seconds: 1));
     });
   });
 }
